@@ -1,0 +1,36 @@
+{
+  "name": "hubtec-server",
+  "version": "1.0.0",
+  "description": "ExpressJS: Criação dos EndPoints. Sequelize(ORM): Criação dos Models e Migrações e conexão com o Banco. MomentJS:  Conversão de Data. Babel: Transpilar para EC6.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node app.js",
+    "sequelize" : "npx sequelize-cli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getuliovdm/hubtec-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getuliovdm/hubtec-server/issues"
+  },
+  "homepage": "https://github.com/getuliovdm/hubtec-server#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.18.4",
+    "sequelize-cli": "^5.5.1"
+  }
+}
