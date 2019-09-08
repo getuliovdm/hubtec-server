@@ -11,7 +11,7 @@ export default (sequelize, DataTypes) => {
     }
   }, {});
   User.associate = (models) => {
-    User.hasMany(models.Tasks, {
+    User.hasMany(models.Task, {
       foreignKey: 'userId',
     });
   };
