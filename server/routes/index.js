@@ -12,4 +12,5 @@ export default (app) => {
     const Task = `${User}/tasks`;
     app.post(`${Task}`, Tasks.create); // API EndPoint do Cadastro de Tarefa
     app.get(`${Task}/:userId`, Tasks.listAll); // API EndPoint de Listar Tarefas
+    app.put(`${Task}/:taskId`, Tasks.updateTask); // API EndPoint de atualizar a Tarefa
 };
