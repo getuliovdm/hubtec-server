@@ -20,7 +20,7 @@ class Tasks {
     }
     static updateTask(req, res) {
         let finalDate =  moment(req.body.finalDate, 'YYYY-MM-DD');
-         return Tasks
+         return Task
              .findOne({
                  where: { id: req.params.taskId }
              })
@@ -45,6 +45,26 @@ class Tasks {
                  }).catch(error => res.status(400).send(error));
              }).catch(error => res.status(400).send(error));
      }
+    static deleteTask ( req, res ) {
+        return Task
+            .findOne({
+                where: { id: req.params.taskId }
+            })
+            .then(task => {
+                if (!task) {
+                    return res.status(400).send({
+                        message: 'Task Not Found',
+                    });
+                }
+                return task
+                    .destroy()
+                    .then(() => res.status(200).send({
+                        message: 'Task successfully deleted'
+                    }))
+                    .catch(error => res.status(400).send(error));
+            })
+            .catch(error => res.status(400).send(error))
+    }
 }
 
 export default Tasks
