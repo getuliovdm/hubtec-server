@@ -17,8 +17,8 @@ export default (sequelize, DataTypes) => {
       type : DataTypes.BOOLEAN
     }
   }, {});
-  Tasks.associate = function(models) {
-    Tasks.belongsTo(models.User, {
+  Task.associate = function(models) {
+    Task.belongsTo(models.User, {
       foreignKey: 'userId',
       onDelete: 'CASCADE'
     });
