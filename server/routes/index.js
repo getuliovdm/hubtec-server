@@ -3,7 +3,7 @@ import Tasks from '../controllers/task';
 export default (app) => {
     const Router = '/api';
     app.get(`${Router}`, (req, res) => res.status(200).send({
-        message: 'Welcome to the TodoList API!',
+        message: 'Welcome to the Hubtec-Gerenciador de Tarefas API!',
     }));
     //USUARIO
     const User = `${Router}/users`;
@@ -11,4 +11,5 @@ export default (app) => {
     //TAREFAS
     const Task = `${User}/tasks`;
     app.post(`${Task}`, Tasks.create); // API EndPoint do Cadastro de Tarefa
+    app.get(`${Task}/:userId`, Tasks.listAll); // API EndPoint de Listar Tarefas
 };
