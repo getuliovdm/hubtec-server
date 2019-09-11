@@ -1,11 +1,15 @@
 import model from '../models';
-
+const moment = require('moment');
 const { Task } = model;
 
 class Tasks {
     static create(req, res) {
+
+        let {title,description,userId,deleted } = req.body
+        let finalDate =  moment(req.body.finalDate, 'YYYY-MM-DD');
+
         return Task
-             .create(req.body)
+             .create({title,description,finalDate,userId,deleted })
             .then(task => res.status(201).send({
                 message: `Your task with the title ${req.body.title} has been created successfully `,
                 task

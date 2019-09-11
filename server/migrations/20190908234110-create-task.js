@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       finalDate: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DATE
       },
       userId: {
         type: Sequelize.INTEGER

@@ -1,12 +1,12 @@
-import model from '../models';
+import models from '../models';
 
-const { User } = model;
+const { User } = models;
 
 class Users {
     static register(req, res) {
-       return User
-            .create(req.body)
-            .then(userData => res.status(201).send({
+        const { userName, email, password } = req.body;
+        console.log(req.body);
+        return User.create({ userName, email, password }).then(userData => res.status(201).send({
                 success: true,
                 message: 'User successfully created',
                 userData
