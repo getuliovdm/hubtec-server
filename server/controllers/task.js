@@ -20,17 +20,30 @@ class Tasks {
         .findOne({
             where: {id : req.params.taskId}
         })
-        .then(task => res.status(201).send(task))
+        .then(task => {res.status(201).send(task)})
     }
     static listAll( req, res){
         return Task
         .findAll({
             where: {userId : req.params.userId}
         })
-        .then(tasks => res.status(201).send(tasks))
+        .then(tasks => {
+            tasks = tasks.map(task => {
+                return {
+                    id:task.id,
+                    title: task.title,
+                    deleted: task.deleted,
+                    userId: task.userId,
+                    finalDate: moment(task.finalDate).format('DD/MM/YYYY'),
+                    description: task.description,
+                }
+            });
+            res.status(201).send(tasks)
+        })
     }
     static updateTask(req, res) {
         let finalDate =  moment(req.body.finalDate, 'YYYY-MM-DD');
+        console.log(finalDate)
          return Task
              .findOne({
                  where: { id: req.params.taskId }

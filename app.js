@@ -4,7 +4,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import routes from './server/routes';
 import cors from 'cors';
-const hostname = '192.168.0.11';
+const hostname = '192.168.2.37';
 const port = 3333;
 const app = express() // setup express application
 const server = http.createServer(app);

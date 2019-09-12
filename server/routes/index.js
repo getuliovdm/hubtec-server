@@ -17,7 +17,7 @@ export default (app) => {
     //TAREFAS
     const Task = `${User}/tasks`;
     app.post(`${Task}`, Tasks.create);  
-    app.get(`${Task}/find/:taskId`, Tasks.findOne);            // API EndPoint do Cadastro de Tarefa C
+               // API EndPoint do Cadastro de Tarefa C
     app.get(`${Task}/:userId`, Tasks.listAll);      // API EndPoint de Listar Tarefas     R
     app.put(`${Task}/:taskId`, Tasks.updateTask);   // API EndPoint de atualizar a Tarefa.U
     app.delete(`${Task}/:taskId`, Tasks.deleteTask);// API EndPoint de deletar a Tarefa.  D
