@@ -15,6 +15,13 @@ class Tasks {
                 task
             }))
     }
+    static findOne( req, res){
+        return Task
+        .findOne({
+            where: {id : req.params.taskId}
+        })
+        .then(task => res.status(201).send(task))
+    }
     static listAll( req, res){
         return Task
         .findAll({
@@ -31,40 +38,41 @@ class Tasks {
              .then(task => {
                  task.update({
                      title: req.body.title || task.title,
-                     author: req.body.author || task.author,
+                     deleted: req.body.deleted || task.deleted,
                      userId : req.body.userId || task.userId,
                      finalDate : finalDate || task.finalDate,
                      description: req.body.description || task.description,
                  }).then( updateTask => {
+                     console.log(JSON.stringify(updateTask));
                      res.status(200).send({
                          message: 'Task updated successfully',
-                         data: {
-                             title: req.body.title || updateTask.title,
-                             author: req.body.author || updateTask.author,
-                             userId: req.body.userId || updateTask.userId,
-                             finalDate: finalDate || task.finalDate,
-                             description: req.body.description || updateTask.description,
-                         }
+                         data: updateTask
                      })
                  }).catch(error => res.status(400).send(error));
              }).catch(error => res.status(400).send(error));
      }
     static deleteTask ( req, res ) {
+         
         return Task
             .findOne({
                 where: { id: req.params.taskId }
             })
             .then(task => {
+                
                 if (!task) {
                     return res.status(400).send({
                         message: 'Task Not Found',
                     });
                 }
                 return task
-                    .destroy()
-                    .then(() => res.status(200).send({
-                        message: 'Task successfully deleted'
-                    }))
+                    .update({
+                        title: task.title,
+                        deleted: true,
+                        userId : task.userId ,
+                        finalDate : task.finalDate,
+                        description: task.description 
+                    })
+                    .then(() => res.status(200).send(task))
                     .catch(error => res.status(400).send(error));
             })
             .catch(error => res.status(400).send(error))

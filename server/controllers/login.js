@@ -22,10 +22,10 @@ class Login {
                     });
                     return;
                 }
-                console.log(JSON.stringify(response));
                  const token = jwt.sign({id: response.id}, "@hubtec-tasks-Token" )
                  res.status(201).send({
                     message: 'Successfull Login',
+                    user: response,
                     token: token
                 });
                 // req.session.Professional = response;
